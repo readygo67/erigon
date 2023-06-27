@@ -9,6 +9,7 @@ import (
 	"github.com/ledgerwatch/log/v3"
 )
 
+// TODO(keep), BootstrapCheckpoint 这个函数的作用是？
 func (l *LightClient) BootstrapCheckpoint(ctx context.Context, finalized [32]byte) error {
 	log.Info("[Checkpoint Sync] Retrieving lightclient bootstrap from sentinel",
 		"root", common.Bytes2Hex(finalized[:]))

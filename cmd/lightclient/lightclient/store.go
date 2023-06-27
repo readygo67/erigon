@@ -7,6 +7,7 @@ import (
 	"github.com/ledgerwatch/erigon/cl/utils"
 )
 
+// LightClient 需要保存的数据
 type LightClientStore struct {
 	// Beacon block header that is finalized
 	finalizedHeader *cltypes.BeaconBlockHeader
@@ -30,6 +31,7 @@ type LightClientStore struct {
  *	initialize_light_client_store initializes a new store with a
  *	received LightClientBootstrap derived from a given trusted_block_root.
  */
+//TODO(keep), 创建一个LightClientStore
 func NewLightClientStore(trustedRoot [32]byte, bootstrap *cltypes.LightClientBootstrap) (*LightClientStore, error) {
 	headerRoot, err := bootstrap.Header.HeaderEth2.HashSSZ()
 	if err != nil {

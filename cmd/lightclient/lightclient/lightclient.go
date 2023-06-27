@@ -50,7 +50,7 @@ type LightClient struct {
 	highestProcessedRoot common2.Hash // Highest processed ETH2 block root.
 	lastEth2ParentRoot   common2.Hash // Last ETH2 Parent root.
 	finalizedEth1Hash    common2.Hash
-	recentHashesCache    *lru.Cache[common2.Hash, struct{}]
+	recentHashesCache    *lru.Cache[common2.Hash, struct{}] //记录最近处理过东西的hash
 	rpc                  *rpc.BeaconRpcP2P
 	// Either execution server or client
 	execution       remote.ETHBACKENDServer
@@ -58,6 +58,7 @@ type LightClient struct {
 	store           *LightClientStore
 }
 
+// 启动一个LightClient
 func NewLightClient(ctx context.Context, genesisConfig *clparams.GenesisConfig, beaconConfig *clparams.BeaconChainConfig,
 	execution remote.ETHBACKENDServer, executionClient remote.ETHBACKENDClient, sentinel sentinel.SentinelClient,
 	highestSeen uint64, verbose bool) (*LightClient, error) {

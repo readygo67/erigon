@@ -71,6 +71,7 @@ type SignedBeaconBlock struct {
 	Block     *BeaconBlock
 }
 
+// BeaconBlock 数据结构
 type BeaconBlock struct {
 	Slot          uint64
 	ProposerIndex uint64

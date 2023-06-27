@@ -12,6 +12,7 @@ import (
 	"github.com/ledgerwatch/erigon/ethdb/privateapi"
 )
 
+//将ETH el的block 转换为 ExecutionPayload
 func convertLightrpcExecutionPayloadToEthbacked(e *cltypes.Eth1Block) (*types.ExecutionPayload, error) {
 	var baseFee *uint256.Int
 	header, err := e.RlpHeader()
@@ -54,9 +55,11 @@ func convertLightrpcExecutionPayloadToEthbacked(e *cltypes.Eth1Block) (*types.Ex
 }
 
 func (l *LightClient) processBeaconBlock(beaconBlock *cltypes.BeaconBlock) error {
+	//不处理beaconBlock
 	if l.execution == nil && l.executionClient == nil {
 		return nil
 	}
+
 	// If we recently imported the beacon block, skip.
 	bcRoot, err := beaconBlock.HashSSZ()
 	if err != nil {
